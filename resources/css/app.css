@@ -1,0 +1,33 @@
+/* CSS Tùy Chỉnh cho Navbar */
+.navbar {
+    background-color: #f8f9fa; /* Màu nền của navbar */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Độ đậm của tên thương hiệu */
+}
+
+.nav-link {
+    color: #007bff; /* Màu của các link */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Màu của link khi hover */
+}
+
+.dropdown-menu {
+    background-color: white; /* Màu nền của dropdown */
+}
+
+.dropdown-item {
+    color: #212529; /* Màu của các item trong dropdown */
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1; /* Màu nền của item khi hover */
+}
+
+/* Tùy chỉnh cho form tìm kiếm */
+.form-inline .form-control {
+    width: 200px; /* Chiều rộng của ô tìm kiếm */
+}
