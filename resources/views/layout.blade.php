@@ -20,25 +20,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
  <!-- Custom CSS -->
- <style>
-        .card-img-top {
-            width: 100%;        /* Đảm bảo ảnh chiếm hết chiều rộng của card */
-            height: 300px;      /* Giới hạn chiều cao của ảnh */
-            object-fit: cover;  /* Đảm bảo ảnh không bị biến dạng */
-        }
-        .card {
-            height: 500px;      /* Giới hạn chiều cao của toàn bộ card */
-            width: 300px;     
-        }
-        
-    </style>
+ 
         
     </head>
     <body class="antialiased">
         <div class="container">
         <!-- Menu -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="{{url('/')}}">Sachtruyen.Com</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -46,23 +35,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="{{url('/')}}">Trang chủ <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Chapter
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="">Thêm chapter</a>
-                                        <a class="dropdown-item" href="">Liệt kê chapter</a>
-                                    </div>
-                                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Danh mục truyện
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($danhmuc as $key => $danh)
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('danh-muc/' .$danh->slug_danhmuc) }}">{{ $danh->tendanhmuc }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                
+
                 </ul>
                 <form autocomplete="off" class="d-flex" role="search" action="{{ url('tim-kiem') }}"
                         method="POST">
@@ -72,105 +61,50 @@
                         <div class="search_ajax"></div>
                         <button class="btn btn-outline-success" type="submit">Tìm</button>
                     </form>
+
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Đăng xuất') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
             </div>
             </nav>
         <!-- Slide -->
-        <!-- <div class="owl-carousel owl-theme mt-5">
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-           
-        </div> -->
-        <h3>Truyện đề cử</h3>
-        <div class="your-slider">
-        
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-       
-        </div>
+        @yield('slide')
+        <!-- Truyen moi -->
+        @yield('content')
 
-         <!-- Truyen moi -->
-        <h3>Truyện mới</h3>
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}" alt="Card image cap">
-                            <div class="card-body">
-                            <h4>This is a wider card with supporting </h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}" alt="Card image cap">
-                            <div class="card-body">
-                            <h4>This is a wider card with supporting </h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}" alt="Card image cap">
-                            <div class="card-body">
-                            <h4>This is a wider card with supporting </h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
-    </div>
 
        
         <!-- jQuery -->
@@ -199,19 +133,64 @@
             })
         </script>
         <script type="text/javascript">
-    $(document).ready(function(){
-        $('.your-slider').slick({
-            dots: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-        });
-    });
-</script>
+            $(document).ready(function(){
+                $('.your-slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                });
+            });
+        </script>
 
+        <script type="text/javascript">
+            $('.select-chapter').on('change', function() {
+                var url = $(this).val();
+                if (url) {
+                    window.location = url;
+                }
+                return false;
+            });
+
+            current_chapter();
+
+            function current_chapter() {
+                var url = window.location.href;
+                $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
+            }
+        </script>
+
+        <script type="text/javascript">
+            $('#keywords').keyup(function() {
+                var keywords = $(this).val();
+                if (keywords != '') {
+                    var _token = $('input[name="_token"]').val();
+
+                    $.ajax({
+                        url: "{{ url('/timkiem-ajax') }}",
+                        method: "POST",
+                        data: {
+                            keywords: keywords,
+                            _token: _token
+                        },
+                        success: function(data) {
+                            $('#search_ajax').fadeIn();
+                            $('#search_ajax').html(data);
+                        }
+                    });
+                    else {
+                        $('#search_ajax').fadeOut();
+                    }
+                }
+                $(document).on('click', 'li.timkiem_ajax', function() {
+                    $('keywords').val($(this).text());
+                    $('#search_ajax').fadeOut();
+                })
+            })
+        </script>
     </body>
 </html>
 

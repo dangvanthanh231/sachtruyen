@@ -20,11 +20,13 @@
                             <tr>
                             <th scope="col">#</th>
                             <th scope="col">Tên truyện</th>
+                            <th scope="col">Tác giả</th>
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Slug truyện</th>
                             <th scope="col">Tóm tắt</th>
                             <th scope="col">Danh mục</th>
                             <th scope="col">Kích hoạt</th>
+                            <th scope="col">Ngày tạo</th>
                             <th scope="col">Quản lý</th>
 
                             </tr>
@@ -34,6 +36,7 @@
                             <tr>
                             <th scope="row">{{$key}}</th>
                             <td>{{$truyen->tentruyen}}</td>
+                            <td>{{$truyen->tacgia}}</td>
                             <td><img src="{{asset('public/uploads/truyen/'.$truyen->hinhanh)}}" height="250" width="180"></td>
                             <td>{{$truyen->slug_truyen}}</td>
                             <td>{{$truyen->tomtat}}</td>
@@ -45,6 +48,7 @@
                                     <span class="text text-danger">Không kích hoạt</span>
                                 @endif
                             </td>
+                            <td>{{$truyen->created_at}} - {{$truyen->created_at->diffForHumans()}}</td>
                             <td>
                                 <a href="{{route('truyen.edit',[$truyen->id])}}" class="btn btn-primary">Edit</a>
                                 <form action="{{route('truyen.destroy',[$truyen->id])}}" method="POST">

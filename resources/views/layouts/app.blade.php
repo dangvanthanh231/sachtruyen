@@ -110,5 +110,10 @@
             document.getElementById('convert_slug').value = slug;
         }
     </script>
+
+<script <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('noidung');
+    </script>
 </body>
 </html>

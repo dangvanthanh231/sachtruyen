@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Chapter;
 use App\Models\Truyen;
+use Carbon\Carbon; 
 
 class ChapterController extends Controller
 {
@@ -126,6 +127,8 @@ class ChapterController extends Controller
         $chapter -> noidung=$data['noidung'];
         $chapter -> kichhoat=$data['kichhoat'];
         $chapter -> truyen_id=$data['truyen_id'];
+
+        
         $chapter ->save();
         return redirect()->back()->with('status','Cập nhật chapter thành công');
     }

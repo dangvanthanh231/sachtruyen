@@ -33,6 +33,9 @@
                             <label for="exampleInputEmail1">Slug truyện</label>
                             <input type="text" class="form-control" value="{{old('slug_truyen')}}" id="convert_slug" name="slug_truyen" aria-describedby="emailHelp" placeholder="Slug truyện ...">
                         </div>
+                        <label for="exampleInputEmail1" class="form-label">Tác giả</label>
+                            <input type="text" class="form-control" value="{{old('tacgia')}}" name="tacgia" id="slug"
+                            aria-describedby="emailHelp" placeholder="Tác giả..."> <br>
                         <div class="form-group mb-3">
                             <label for="exampleInputEmail1">Tóm tắt truyện</label>
                             <textarea name="tomtat" class="form-control" rows="5" style="resize:none" ></textarea>
