@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Chapter;
 use App\Models\Truyen;
+use Carbon\Carbon; 
 
 class ChapterController extends Controller
 {
@@ -41,7 +42,7 @@ class ChapterController extends Controller
     {
         $data = $request ->validate(
             [
-                'tieude' => 'required|unique:chapter|max:255',
+                'tieude' => 'required|max:255',
                 'slug_chapter' => 'required|unique:chapter|max:255',
                 'tomtat' =>'required',
                 'noidung' =>'required',
@@ -49,7 +50,7 @@ class ChapterController extends Controller
                 'truyen_id' =>'required',
             ],
             [
-                'tieude.unique' => 'Tiêu đề đã có, xin điền tên khác',
+                
                 'slug_chapter.unique' => 'Slug chapter đã có, xin điền slug khác',
                 'tieude.required' => 'Bắt buộc phải có tiêu đề',
                 'slug_chapter.required' => 'Bắt buộc phải có Slug chapter ',
@@ -60,7 +61,7 @@ class ChapterController extends Controller
         );
         $chapter = new Chapter();
         $chapter -> tieude=$data['tieude'];
-        $chapter -> slug_chapter=$data['slug_chapter'];
+        $chapter -> slug_chapter=$data['slug_chapter']. '-' . $data['truyen_id'];
         $chapter -> tomtat=$data['tomtat'];
         $chapter -> noidung=$data['noidung'];
         $chapter -> kichhoat=$data['kichhoat'];
@@ -77,7 +78,7 @@ class ChapterController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -121,11 +122,13 @@ class ChapterController extends Controller
         );
         $chapter = Chapter::find($id);
         $chapter -> tieude=$data['tieude'];
-        $chapter -> slug_chapter=$data['slug_chapter'];
+        $chapter -> slug_chapter=$data['slug_chapter']. '-' . $data['truyen_id'];
         $chapter -> tomtat=$data['tomtat'];
         $chapter -> noidung=$data['noidung'];
         $chapter -> kichhoat=$data['kichhoat'];
         $chapter -> truyen_id=$data['truyen_id'];
+
+        
         $chapter ->save();
         return redirect()->back()->with('status','Cập nhật chapter thành công');
     }
@@ -141,4 +144,6 @@ class ChapterController extends Controller
         Chapter::find($id)->delete();
         return redirect()->back()->with('status','Xóa chapter thành công');
     }
+
+    
 }

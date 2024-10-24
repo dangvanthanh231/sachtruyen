@@ -15,6 +15,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <img src="{{ asset('public/images/hacker.jfif') }}" style="width: 100%; height: 100%">
+
 
                 </div>
             </div>

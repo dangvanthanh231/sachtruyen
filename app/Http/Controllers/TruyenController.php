@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DanhmucTruyen;
 use App\Models\Truyen;
+use Carbon\Carbon; 
 
 
 class TruyenController extends Controller
@@ -43,7 +44,7 @@ class TruyenController extends Controller
             [
                 'tentruyen' => 'required|unique:truyen|max:255',
                 'slug_truyen' => 'required|unique:truyen|max:255',
-
+                'tacgia' => 'required',
                 'hinhanh' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width:100,min_height:100,
                  max_width:1000,max_height:1000',
 
@@ -64,9 +65,12 @@ class TruyenController extends Controller
         $truyen = new Truyen();
         $truyen -> tentruyen=$data['tentruyen'];
         $truyen -> slug_truyen=$data['slug_truyen'];
+        $truyen->tacgia = $data['tacgia'];
         $truyen -> tomtat=$data['tomtat'];
         $truyen -> kichhoat=$data['kichhoat'];
         $truyen -> danhmuc_id=$data['danhmuc'];
+
+        $truyen -> created_at = Carbon::now('Asia/Ho_Chi_Minh');
         
         $get_image= $request->hinhanh;
         $path = 'public/uploads/truyen/';
@@ -117,6 +121,7 @@ class TruyenController extends Controller
             [
                 'tentruyen' => 'required|max:255',
                 'slug_truyen' => 'required|max:255',
+                'tacgia' => 'required',
                 'tomtat' =>'required',
                 'kichhoat' =>'required',
                 'danhmuc' =>'required',
@@ -124,6 +129,7 @@ class TruyenController extends Controller
             [
                 'tentruyen.required' => 'Bắt buộc phải có tên truyện',
                 'slug_truyen.required' => 'Bắt buộc phải có Slug truyện ',
+                'tacgia.required' => 'Phải có tác giả',
                 'tomtat.required' =>'Bắt buộc phải có mô tả truyện',
 
             ]
@@ -131,9 +137,12 @@ class TruyenController extends Controller
         $truyen = Truyen::find($id);
         $truyen -> tentruyen=$data['tentruyen'];
         $truyen -> slug_truyen=$data['slug_truyen'];
+        $truyen->tacgia = $data['tacgia'];
         $truyen -> tomtat=$data['tomtat'];
         $truyen -> kichhoat=$data['kichhoat'];
         $truyen -> danhmuc_id=$data['danhmuc'];
+
+        $truyen->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         
         $get_image= $request->hinhanh;
         if($get_image){

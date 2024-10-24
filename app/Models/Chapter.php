@@ -10,7 +10,7 @@ class Chapter extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'truyen_id','tomtat','tieude','noidung','kichhoat','slug_chapter'
+        'truyen_id','tomtat','tieude','noidung','kichhoat','slug_chapter','view'
     ];
     protected $table = 'chapter';
 

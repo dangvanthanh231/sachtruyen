@@ -20,157 +20,100 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
  <!-- Custom CSS -->
- <style>
-        .card-img-top {
-            width: 100%;        /* Đảm bảo ảnh chiếm hết chiều rộng của card */
-            height: 300px;      /* Giới hạn chiều cao của ảnh */
-            object-fit: cover;  /* Đảm bảo ảnh không bị biến dạng */
-        }
-        .card {
-            height: 500px;      /* Giới hạn chiều cao của toàn bộ card */
-            width: 300px;     
-        }
-        
-    </style>
+ 
         
     </head>
     <body class="antialiased">
         <div class="container">
         <!-- Menu -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Chapter
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="">Thêm chapter</a>
-                                        <a class="dropdown-item" href="">Liệt kê chapter</a>
-                                    </div>
-                                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-                </ul>
-                <form autocomplete="off" class="d-flex" role="search" action="{{ url('tim-kiem') }}"
-                        method="POST">
-                        @csrf
-                        <input class="form-control me-2" type="search" name="tukhoa" id="keywords"
-                            placeholder="Nhập..." aria-label="Search">
-                        <div class="search_ajax"></div>
-                        <button class="btn btn-outline-success" type="submit">Tìm</button>
-                    </form>
-            </div>
-            </nav>
-        <!-- Slide -->
-        <!-- <div class="owl-carousel owl-theme mt-5">
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-            <div class="item"><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}"></div>
-           
-        </div> -->
-        <h3>Truyện đề cử</h3>
-        <div class="your-slider">
-        
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-            <div><img src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}">
-                <h4>Nhất niệm vĩnh hằng</h4>
-                <p><i class="fa-solid fa-eye"></i>1234</i></p>
-            </div>
-       
-        </div>
-
-         <!-- Truyen moi -->
-        <h3>Truyện mới</h3>
-        <div class="album py-5 bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}" alt="Card image cap">
-                            <div class="card-body">
-                            <h4>This is a wider card with supporting </h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
+                <a class="navbar-brand" href="{{ url('/') }}" style="font-size: 24px; font-weight: bold; color: #007bff;">
+                    <i class="fas fa-book"></i> Truyenhay666.Com
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-home"></i> Trang chủ <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-list"></i> Danh mục truyện
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($danhmuc as $key => $danh)
+                                    <li><a class="dropdown-item" href="{{ url('danh-muc/' .$danh->slug_danhmuc) }}">{{ $danh->tendanhmuc }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <form autocomplete="off" class="d-flex" role="search" action="{{ url('tim-kiem') }}" method="POST">
+                        @csrf
+                        <input class="form-control me-2" type="search" name="tukhoa" id="keywords" placeholder="Nhập từ khóa..." aria-label="Search">
+                        <div class="search_ajax"></div>
+                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Tìm</button>
+                    </form>
+
+                    <ul class="navbar-nav ms-auto">
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt"></i> {{ __('Đăng xuất') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}" alt="Card image cap">
-                            <div class="card-body">
-                            <h4>This is a wider card with supporting </h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="{{ asset('public/uploads/truyen/nhat-niem-vinh-hang62.jpg') }}" alt="Card image cap">
-                            <div class="card-body">
-                            <h4>This is a wider card with supporting </h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
             </div>
-        </div>
+        </nav>
 
-    </div>
+        <!-- Slide -->
+        @yield('slide')
+        <!-- Truyen moi -->
+        @yield('content')
+
+        <!-- Cuối bài -->
+        <footer class="text-muted py-5">
+            <div class="container">
+            <a class="navbar-brand" href="{{url('/')}}">Truyenhay666.Com</a>
+                <p class="float-end mb-1">
+                    <a href="{{url('/')}}">Quay lại trang chủ</a>
+                </p>
+                <p class="mb-1">Trường Đại học công nghệ TP HCM @ 2024</p>
+                <p class="mb-1">Website được vận hành bởi TBK Thanh</p>
+            </div>
+        </footer>
+
+        </div>
 
        
         <!-- jQuery -->
@@ -179,39 +122,65 @@
         <script src="{{ asset('/js/owl.carousel.js') }}"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-        <!-- Owl Carousel Initialization -->
         <script type="text/javascript">
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 3
-                    },
-                    1000: {
-                        items: 5
+            $(document).ready(function(){
+                $('.your-slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $('.select-chapter').on('change', function() {
+                var url = $(this).val();
+                if (url) {
+                    window.location = url;
+                }
+                return false;
+            });
+
+            current_chapter();
+
+            function current_chapter() {
+                var url = window.location.href;
+                $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
+            }
+        </script>
+
+        <script type="text/javascript">
+            $('#keywords').keyup(function() {
+                var keywords = $(this).val();
+                if (keywords != '') {
+                    var _token = $('input[name="_token"]').val();
+
+                    $.ajax({
+                        url: "{{ url('/timkiem-ajax') }}",
+                        method: "POST",
+                        data: {
+                            keywords: keywords,
+                            _token: _token
+                        },
+                        success: function(data) {
+                            $('#search_ajax').fadeIn();
+                            $('#search_ajax').html(data);
+                        }
+                    });
+                    else {
+                        $('#search_ajax').fadeOut();
                     }
                 }
+                $(document).on('click', 'li.timkiem_ajax', function() {
+                    $('keywords').val($(this).text());
+                    $('#search_ajax').fadeOut();
+                })
             })
         </script>
-        <script type="text/javascript">
-    $(document).ready(function(){
-        $('.your-slider').slick({
-            dots: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-        });
-    });
-</script>
-
     </body>
 </html>
 
