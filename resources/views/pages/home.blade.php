@@ -2,6 +2,7 @@
 @section('slide')
     @include('pages.slide')
 @endsection
+<<<<<<< HEAD
 
 @section('content')
 
@@ -37,3 +38,36 @@
         </div>
     </div>
 @endsection
+=======
+@section('content')
+<h2>Tổng hợp các truyện</h2>
+    <div class="album py-5 bg-light">
+        <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach($truyen as $key => $value)
+            <div class="col-md-3 d-flex">
+            <div class="card shadow-sm">
+                <img class="card-img-top" src="{{asset('public/uploads/truyen/'.$value->hinhanh)}}" style="width: auto; height: 400px">
+                <div class="card-body " style="width: 300px;" >
+                    <h4>{{$value->tentruyen}}</h4>
+                <p class="card-text">{{ $value->limit_desc }}</p>
+                {{-- <p class="card-text">{{ Illuminate\Support\Str::words($value->tomtat, 25, '...') }}</p> --}}
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                    <a href="{{url('xem-truyen/'.$value->slug_truyen)}}" class="btn btn-sm btn-outline-secondary">Đọc ngay</a>
+                    <a class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"> {{$value->chapter->sum("view")}}</i></a>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+            </div>
+            @endforeach
+        </div> <br>
+        <div class="d-flex justify-content-center">
+            {{ $truyen->links() }}
+        </div>
+        </div>
+    </div>
+    @endsection
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0

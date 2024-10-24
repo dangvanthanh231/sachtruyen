@@ -26,6 +26,7 @@
     <body class="antialiased">
         <div class="container">
         <!-- Menu -->
+<<<<<<< HEAD
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}" style="font-size: 24px; font-weight: bold; color: #007bff;">
@@ -64,25 +65,85 @@
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+=======
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{url('/')}}">Sachtruyen.Com</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{url('/')}}">Trang chủ <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Danh mục truyện
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($danhmuc as $key => $danh)
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('danh-muc/' .$danh->slug_danhmuc) }}">{{ $danh->tendanhmuc }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                
+
+                </ul>
+                <form autocomplete="off" class="d-flex" role="search" action="{{ url('tim-kiem') }}"
+                        method="POST">
+                        @csrf
+                        <input class="form-control me-2" type="search" name="tukhoa" id="keywords"
+                            placeholder="Nhập..." aria-label="Search">
+                        <div class="search_ajax"></div>
+                        <button class="btn btn-outline-success" type="submit">Tìm</button>
+                    </form>
+
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
+<<<<<<< HEAD
                                     <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> Đăng ký</a>
+=======
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
+<<<<<<< HEAD
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
+=======
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
+<<<<<<< HEAD
                                     onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt"></i> {{ __('Đăng xuất') }}
+=======
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Đăng xuất') }}
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -92,6 +153,7 @@
                             </li>
                         @endguest
                     </ul>
+<<<<<<< HEAD
                 </div>
             </div>
         </nav>
@@ -115,6 +177,17 @@
 
         </div>
 
+=======
+            </div>
+            </nav>
+        <!-- Slide -->
+        @yield('slide')
+        <!-- Truyen moi -->
+        @yield('content')
+
+        </div>
+
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
        
         <!-- jQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
@@ -181,6 +254,68 @@
                 })
             })
         </script>
+<<<<<<< HEAD
+=======
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.your-slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $('.select-chapter').on('change', function() {
+                var url = $(this).val();
+                if (url) {
+                    window.location = url;
+                }
+                return false;
+            });
+
+            current_chapter();
+
+            function current_chapter() {
+                var url = window.location.href;
+                $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
+            }
+        </script>
+
+        <script type="text/javascript">
+            $('#keywords').keyup(function() {
+                var keywords = $(this).val();
+                if (keywords != '') {
+                    var _token = $('input[name="_token"]').val();
+
+                    $.ajax({
+                        url: "{{ url('/timkiem-ajax') }}",
+                        method: "POST",
+                        data: {
+                            keywords: keywords,
+                            _token: _token
+                        },
+                        success: function(data) {
+                            $('#search_ajax').fadeIn();
+                            $('#search_ajax').html(data);
+                        }
+                    });
+                    else {
+                        $('#search_ajax').fadeOut();
+                    }
+                }
+                $(document).on('click', 'li.timkiem_ajax', function() {
+                    $('keywords').val($(this).text());
+                    $('#search_ajax').fadeOut();
+                })
+            })
+        </script>
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
     </body>
 </html>
 

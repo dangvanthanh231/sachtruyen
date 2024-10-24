@@ -7,6 +7,7 @@
             <li class="breadcrumb-item"><a
                     href="{{ url('danh-muc/' . $truyen_breadcumb->danhmuctruyen->slug_danhmuc) }}">{{ $truyen_breadcumb->danhmuctruyen->tendanhmuc }}</a>
             </li>
+<<<<<<< HEAD
             <li class="breadcrumb-item">
                 <a href="{{url('xem-truyen/'.$truyen_breadcumb->slug_truyen)}}">{{$truyen_breadcumb->tentruyen}}</a>
             </li>
@@ -17,6 +18,16 @@
             <h4>{{ $chapter->truyen->tentruyen }}</h4>
             <p>Chương hiện tại: {{ $chapter->tieude }}</p>
             <div class="col-md-12  ">
+=======
+            <li class="breadcrumb-item active" aria-current="page">{{ $truyen_breadcumb->tentruyen }}</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>{{ $chapter->truyen->tentruyen }}</h4>
+            <p>Chương hiện tại: {{ $chapter->tieude }}</p>
+            <div class="col-md-5">
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
                 <style>
                     .isDisabled {
                         color: currentColor;
@@ -38,7 +49,11 @@
                     </select>
                 </div>
             </div> <br>
+<<<<<<< HEAD
             <div class="noidungchuong ">
+=======
+            <div class="noidungchuong">
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
                 {!! $chapter->noidung !!}
             </div>
             <a href="{{ url('xem-chapter/' . $previous_chapter) }}"

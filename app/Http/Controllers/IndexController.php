@@ -12,7 +12,11 @@ class IndexController extends Controller
     //
     public function home(){
         $danhmuc = DanhmucTruyen::orderBy('id', 'DESC')->get();
+<<<<<<< HEAD
         $truyen = Truyen::orderBy('id', 'DESC')->where('kichhoat',0)->paginate(12);
+=======
+        $truyen = Truyen::orderBy('id', 'DESC')->where('kichhoat',0)->paginate(8);
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
         return view("pages.home")->with(compact('danhmuc', 'truyen'));
     }
     public function danhmuc($slug){
@@ -36,7 +40,11 @@ class IndexController extends Controller
         $danhmuc = DanhmucTruyen::orderBy('id', 'DESC')->get();
         //breadcumb
         $truyen = Chapter::where('slug_chapter',$slug)->first();
+<<<<<<< HEAD
         $truyen->update(['view',++$truyen->view]);
+=======
+        
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
         //endbreadcumb
         $truyen_breadcumb = Truyen::with('danhmuctruyen')->where('id',$truyen->truyen_id)->first();
         $chapter = Chapter::with('truyen')->where('slug_chapter',$slug)->where('truyen_id',$truyen->truyen_id)->first();

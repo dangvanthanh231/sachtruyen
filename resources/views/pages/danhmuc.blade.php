@@ -4,7 +4,10 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{url('/')}}">Trang chủ</a></li>
       <li class="breadcrumb-item active" aria-current="page">{{$tendanhmuc}}</li>
+<<<<<<< HEAD
       
+=======
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
     </ol>
   </nav> 
 <h2>{{$tendanhmuc}}</h2>
@@ -33,9 +36,15 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                     <a href="{{url('xem-truyen/'.$value->slug_truyen)}}" class="btn btn-sm btn-outline-secondary">Đọc ngay</a>
+<<<<<<< HEAD
                     <a class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"> {{$value->chapter->sum("view")}}</i></a>
                     </div>
                     <small class="text-muted">{{$value->created_at->diffForHumans()}}</small>
+=======
+                    <a class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"> 1</i></a>
+                    </div>
+                    <small class="text-muted">9 mins ago</small>
+>>>>>>> 37a87dfd24801752c71b9eba066df05f668c49d0
                 </div>
                 </div>
             </div>
