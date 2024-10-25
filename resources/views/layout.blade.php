@@ -10,8 +10,8 @@
         
 
 
-        <!-- Styles -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+         <!-- Styles -->
+         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
@@ -20,7 +20,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
  <!-- Custom CSS -->
- 
+        <style type="text/css">
+            .switch_color{
+                background: #181818;
+                color: #fff;
+            }
+            .switch_color_light{
+                background: #181818 !important;
+                color: #000;
+            }
+        </style>
         
     </head>
     <body class="antialiased">
@@ -55,8 +64,12 @@
                     <form autocomplete="off" class="d-flex" role="search" action="{{ url('tim-kiem') }}" method="POST">
                         @csrf
                         <input class="form-control me-2" type="search" name="tukhoa" id="keywords" placeholder="Nhập từ khóa..." aria-label="Search">
-                        <div class="search_ajax"></div>
+                        <div id="search_ajax"></div>
                         <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Tìm</button>
+                        <select class="custom-select mr-sm-2" id="switch_color">
+                            <option value="xam">Xám</option>
+                            <option value="den">Đen</option>
+                        </select>
                     </form>
 
                     <ul class="navbar-nav ms-auto">
@@ -134,6 +147,14 @@
                     autoplaySpeed: 2000,
                 });
             });
+            $("#switch_color").change(function(){
+                $(document.body).toggleClass('switch_color');
+                $('.album').toggleClass('switch_color_light');
+                $('.card-body').toggleClass('switch_color');
+                $('.breadscrumb').toggleClass('switch_color');
+
+                $('.navbar > a').css('color','#fff');
+            })
         </script>
 
         <script type="text/javascript">
@@ -175,13 +196,89 @@
                         $('#search_ajax').fadeOut();
                     }
                 }
-                $(document).on('click', 'li.timkiem_ajax', function() {
+                $(document).on('click', '.li_timkiem_ajax', function() {
                     $('keywords').val($(this).text());
                     $('#search_ajax').fadeOut();
                 })
+                
             })
+        </script>
+        
+        
+        <script type="text/javascript">
+                show_wishlist();
+                function show_wishlist(){
+                if(localStorage.getItem('wishlist_truyen') !=null){
+                var data = JSON.parse(localStorage.getItem('wishlist_truyen'));
+                data.reverse();
+                for(i=0;i<data.length;i++){
+                    var title = data[i].title; 
+                    var img = data[i].img; 
+                    var id = data[i].id;
+                    var url = data[i].url;
+                $('#yeuthich').append(`
+                    <div class="row mt-2">
+                    <div class="col-md-5"><img class="img img-responsive" width="100%" class="card-img-top" src="`+img+`"alt="`+title+`"></div>
+                <div class="col-md-7 sidebar">
+                    <a href="`+url+`">
+                    <p>`+title+`</p>
+                    </a>
+                </div>
+                </div>
+                `);
+                }
+            }
+        }
+        $('.btn-thich_truyen').click(function(){
+            $('.fa.fa-heart').css('color','#fac');
+            
+            const id = $('.wishlist_id').val(); 
+            const title=$('.wishlist_title').val();
+            const img = $('.card-img-top').attr('src'); 
+            const url = $('.wishlist_url').val();
+            const item = {
+                'id' : id,
+                'title' : title,
+                'img' : img,
+                'url' : url
+            }
+            if(localStorage.getItem('wishlist_truyen')==null){
+                localStorage.setItem('wishlist_truyen','[]');
+            }
+            
+            var old_data = JSON.parse(localStorage.getItem('wishlist_truyen'));
+            var matches = $.grep(old_data, function(obj) {
+               return obj.id == id;
+            })
+            if(matches.length) {
+                alert('Truyện đã có trong danh sách yêu thích');
+            }else{
+                if(old_data.length<=5){
+                    old_data.push(item);
+            }else{
+                alert('Đã đạt tới giới hạn lưu truyện yêu thích.');
+            }
+            
+            $('#yeuthich').append(`
+            <div class="row mt-2">
+            <div class="col-md-5"><img class="img img-responsive" width="100%" class="card-img-top" src="`+img+`" alt="
+            `+title+`"></div>
+            <div class="col-md-7 sidebar">
+                <a href="`+url+`">
+                <p style="color:#666">`+title+`</p> 
+                </a>
+                </div>
+            </div>
+            `);
+            localStorage.setItem('wishlist_truyen',JSON.stringify(old_data));
+            alert('Đã lưu vào danh sách truyện yêu thích');
+        }
+        localStorage.setItem('wishlist_truyen',JSON.stringify(old_data));                                                                                                                                                                                                                                                                                                                                                                                   
+        });      
         </script>
     </body>
 </html>
+
+
 
     
